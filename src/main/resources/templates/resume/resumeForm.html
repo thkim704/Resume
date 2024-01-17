@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.Thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<div layout:fragment="content">
+    <h1 style="text-align: center">내 이력서</h1>
+    <div class="container rounded-4 bg-dark-subtle mx-auto p-4">
+        <div class="mb-3 mx-auto p-3">
+            <table class="table table-bordered border-dark">
+                <tbody>
+                <tr>
+                    <td rowspan='7' width="200" style=" padding: 0; margin: 0;">
+                        <img th:src="@{${personalFormDto.personalImgDto.imgUrl}}" style="max-width: 200px; height: auto; margin: 0; padding: 0; border: none;">
+                    </td>
+                    <td>이름</td>
+                    <td colspan='3' th:text="${memberFormDto.name}"></td>
+                </tr>
+                <tr>
+                    <td>E-mail</td>
+                    <td colspan='3' th:text="${memberFormDto.email}"></td>
+                </tr>
+                <tr>
+                    <td>휴대폰</td>
+                    <td th:text="${personalFormDto.phone}"></td>
+                    <td>전화번호</td>
+                    <td th:text="${personalFormDto.tel}"></td>
+                </tr>
+                <tr>
+                    <td>우편번호</td>
+                    <td th:text="${personalFormDto.zipcode}"></td>
+                    <td>팩스번호</td>
+                    <td th:text="${personalFormDto.fax}"></td>
+                </tr>
+                <tr>
+                    <td>주소</td>
+                    <td colspan='3' th:text="${personalFormDto.address}"></td>
+                </tr>
+                <tr>
+                    <td>생년월일</td>
+                    <td th:text="${personalFormDto.birth}"></td>
+                    <td>성별</td>
+                    <td th:text="${personalFormDto.genderStatus}"></td>
+                </tr>
+                <tr>
+                    <td>혼인 여부</td>
+                    <td th:text="${personalFormDto.marriedStatus}"></td>
+                    <td>병역 사항</td>
+                    <td th:text="${personalFormDto.militaryStatus}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+            <table class="table table-bordered border-dark">
+                <thead>
+                <tr>
+                    <td colspan='4' style="background-color: #D8D8D8; text-align: center;"><b>학력 사항</b></td>
+                </tr>
+                <tr>
+                    <td>학교명</td>
+                    <td>학과</td>
+                    <td>입학일</td>
+                    <td>졸업일</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="educationDto : ${specificationFormDto.educationDtoList}">
+                    <td th:text="${educationDto.name}"></td>
+                    <td th:text="${educationDto.department}"></td>
+                    <td th:text="${educationDto.admissiondate}"></td>
+                    <td th:text="${educationDto.graduationdate}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-dark">
+                <thead>
+                <tr>
+                    <td colspan='4' style="background-color: #D8D8D8; text-align: center;"><b>경력 사항</b></td>
+                </tr>
+                <tr>
+                    <td>회사명</td>
+                    <td>직책</td>
+                    <td>기간</td>
+                    <td>업무내용</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="careerDto : ${specificationFormDto.careerDtoList}">
+                    <td th:text="${careerDto.name}"></td>
+                    <td th:text="${careerDto.position}"></td>
+                    <td th:text="${careerDto.startdate} + ' ~ ' + ${careerDto.enddate}"></td>
+                    <td th:text="${careerDto.detail}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-dark">
+                <thead>
+                <tr>
+                <tr>
+                    <td colspan='4' style="background-color: #D8D8D8; text-align: center;"><b>자격증</b></td>
+                </tr>
+                    <td>이름</td>
+                    <td>등급</td>
+                    <td>발행기관</td>
+                    <td>취득일자</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="certificateDto : ${specificationFormDto.certificateDtoList}">
+                    <td th:text="${certificateDto.name}"></td>
+                    <td th:text="${certificateDto.rating}"></td>
+                    <td th:text="${certificateDto.organization}"></td>
+                    <td th:text="${certificateDto.acquisitiondate}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-dark">
+                <thead>
+                <tr>
+                <tr>
+                    <td colspan='4' style="background-color: #D8D8D8; text-align: center;"><b>상훈</b></td>
+                </tr>
+                    <td>상훈명</td>
+                    <td>수상 내역</td>
+                    <td>수여 기관</td>
+                    <td>수여 일자</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="awardDto : ${specificationFormDto.awardDtoList}">
+                    <td th:text="${awardDto.name}"></td>
+                    <td th:text="${awardDto.rating}"></td>
+                    <td th:text="${awardDto.organization}"></td>
+                    <td th:text="${awardDto.awarddate}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <table class="table table-bordered border-dark">
+                <thead>
+                <tr>
+                <tr>
+                    <td colspan='3' style="background-color: #D8D8D8; text-align: center;"><b>어학</b></td>
+                </tr>
+                    <td>시험명</td>
+                    <td>점수</td>
+                    <td>취득 일자</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="languageDto : ${specificationFormDto.languageDtoList}">
+                    <td th:text="${languageDto.name}"></td>
+                    <td th:text="${languageDto.score}"></td>
+                    <td th:text="${languageDto.acquisitiondate}"></td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+        <div class="mb-3 mx-auto p-3" style="text-align: center">
+            <a class="btn btn-primary btn-lg" href="/resume/personal" role="button">이력서 수정하기</a>
+        </div>
+</div>
+</html>
